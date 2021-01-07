@@ -1,0 +1,23 @@
+name: Main Build and Publish
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on:ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: build
+        run: dotnet build -c Release
+      - name: publish
+        run: |
+          mkdir published-artifacts
+          dotnet publish -c Release -o './published-artifacts'
+      - name: upload artifacts
+        uses: actions/upload-artifacts@v2
+        with:
+          name: publish-artifacts
+          path: './published-artifacts'
