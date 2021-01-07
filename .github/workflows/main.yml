@@ -17,7 +17,7 @@ jobs:
           mkdir published-artifacts
           dotnet publish -c Release -o './published-artifacts'
       - name: upload artifacts
-        uses: actions/upload-artifacts@v2
+        uses: actions/upload-artifact@v2
         with:
           name: publish-artifacts
           path: './published-artifacts'
